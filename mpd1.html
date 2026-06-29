@@ -43,7 +43,36 @@
       object-fit: contain;
       background: #000;
     }
+/* Red seek bar */
+.shaka-seek-bar-container {
+  border-radius: 999px !important;
+  overflow: hidden !important;
+}
 
+.shaka-seek-bar,
+.shaka-range-element {
+  accent-color: #FF0000 !important;
+}
+
+.shaka-seek-bar-container input[type="range"] {
+  accent-color: #FF0000 !important;
+}
+
+.shaka-range-element::-webkit-slider-thumb {
+  background: #FF0000 !important;
+}
+
+.shaka-range-element::-moz-range-thumb {
+  background: #FF0000 !important;
+}
+
+.shaka-range-element::-webkit-slider-runnable-track {
+  background: #FF0000 !important;
+}
+
+.shaka-range-element::-moz-range-progress {
+  background: #FF0000 !important;
+}
     .shaka-spinner-container {
       display: none !important;
     }
