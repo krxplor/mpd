@@ -53,19 +53,16 @@ video{
 }
 
 /* Controls */
-.shaka-controls-container{
-  font-family:'Rajdhani',sans-serif!important;
+.shaka-controls-container,
+.shaka-bottom-controls,
+.shaka-controls-button-panel {
+    box-shadow: none !important;
+    filter: none !important;
 }
 
-.shaka-bottom-controls{
-  background:linear-gradient(
-      to top,
-      rgba(0,0,0,.96),
-      rgba(0,0,0,.72),
-      rgba(0,0,0,.15),
-      transparent
-  )!important;
-  backdrop-filter:blur(0px);
+.shaka-video-container::before,
+.shaka-video-container::after {
+    display: none !important;
 }
 
 /* Buttons */
