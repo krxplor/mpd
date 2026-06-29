@@ -235,10 +235,16 @@ video{
     </div>
   </div>
 
-  <a href="#" target="_blank" class="st-join-btn">
+  <a href="#" id="refreshBtn" class="st-join-btn">
     Refresh
-  </a>
+</a>
 
+<script>
+document.getElementById("refreshBtn").addEventListener("click", function(e) {
+    e.preventDefault();
+    location.reload();
+});
+</script>
   <script>
     document.addEventListener('DOMContentLoaded', async () => {
       shaka.polyfill.installAll();
