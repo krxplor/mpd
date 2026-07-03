@@ -1,50 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Bitmovin Player</title>
 
 <script src="//cdn.bitmovin.com/player/web/8/bitmovinplayer.js"></script>
 
 <style>
-
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
 
-html,body{
-    height:100%;
-    background:#080808;
-    font-family:Arial,sans-serif;
-    overflow:hidden;
+body{
+    background:#090909;
+    font-family:Arial,Helvetica,sans-serif;
+    color:#fff;
 }
 
-/* Center Player */
+/* Header */
 
-.wrapper{
-    width:100%;
-    height:100vh;
+.header{
+    height:60px;
     display:flex;
     align-items:center;
-    justify-content:center;
-    padding:20px;
+    justify-content:space-between;
+    padding:0 18px;
+    background:#121212;
+    border-bottom:1px solid rgba(255,255,255,.08);
 }
 
-/* Player Card */
+.logo{
+    font-size:20px;
+    font-weight:700;
+    letter-spacing:.5px;
+}
+
+.live{
+    background:#ff0000;
+    padding:5px 12px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:bold;
+}
+
+/* Body */
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:15px;
+}
+
+/* Server Buttons */
+
+.server-box{
+    display:flex;
+    gap:10px;
+    margin-bottom:15px;
+}
+
+.server-box button{
+    flex:1;
+    height:44px;
+    border:none;
+    border-radius:10px;
+    background:#1d1d1d;
+    color:#fff;
+    cursor:pointer;
+    font-weight:700;
+    transition:.25s;
+}
+
+.server-box button:hover{
+    background:#303030;
+}
+
+.server-box button.active{
+    background:#e50914;
+}
+
+/* Player */
 
 .player-card{
-    width:100%;
-    max-width:1300px;
     background:#111;
-    border-radius:18px;
+    border-radius:14px;
     overflow:hidden;
-    box-shadow:0 20px 60px rgba(0,0,0,.45);
+    box-shadow:0 10px 40px rgba(0,0,0,.45);
 }
 
-/* Video */
+.player-title{
+    padding:14px 18px;
+    background:#181818;
+    font-size:16px;
+    font-weight:600;
+}
 
 #player-wrapper{
     position:relative;
@@ -63,12 +116,12 @@ html,body{
 #status{
     position:absolute;
     inset:0;
-    background:#000;
     display:flex;
     flex-direction:column;
     align-items:center;
     justify-content:center;
-    z-index:999;
+    background:#000;
+    z-index:100;
 }
 
 .spinner{
@@ -88,12 +141,10 @@ html,body{
 
 .s-title{
     margin-top:18px;
-    color:#fff;
-    font-size:15px;
-    letter-spacing:.5px;
+    font-size:16px;
 }
 
-/* Bitmovin Theme */
+/* Bitmovin */
 
 .bmpui-ui-watermark{
     background-image:url("https://github.io") !important;
@@ -101,142 +152,132 @@ html,body{
 
 .bmpui-ui-seekbar .bmpui-seekbar-playbackposition,
 .bmpui-ui-volumeslider .bmpui-seekbar-playbackposition{
-    background:#ff0000!important;
+    background:#ff0000 !important;
 }
 
 .bmpui-on,
 .bmpui-ui-selectbox{
-    color:#ff0000!important;
+    color:#ff0000 !important;
 }
 
 @media(max-width:768px){
 
-.wrapper{
-    padding:0;
+.header{
+    height:55px;
 }
 
-.player-card{
-    border-radius:0;
+.logo{
+    font-size:18px;
+}
+
+.server-box button{
+    height:42px;
 }
 
 }
-
 </style>
-
 </head>
 
 <body>
 
-<div class="wrapper">
 
-<div class="player-card">
+<div class="container">
 
-<div id="player-wrapper">
-
-<div id="status">
-<div class="spinner"></div>
-<div class="s-title">Loading Stream...</div>
-</div>
-
-<div id="player"></div>
-
-</div>
-
-</div>
-
-</div>
-
-
-
-
-<script src="//cdn.bitmovin.com/player/web/8/bitmovinplayer.js"></script>
-
-    <style>
+    <div class="server-box">
+     
        
-        body { background: ; overflow: hidden; font-family: sans-serif; }
-       
-        #player { width: 100%; height: 100%; background: #000; }
-        #status {
-            position: absolute; inset: 0; z-index: 100; background: #000;
-            display: flex; flex-direction: column; align-items: center;
-            justify-content: center; gap: 18px; padding: 32px; text-align: center;
-        }
-        .spinner {
-            width: 46px; height: 46px; border: 4px solid rgba(255,255,255,0.12);
-            border-top-color: #a6e30b; border-radius: 50%;
-            animation: spin 0.75s linear infinite;
-        }
-        @keyframes spin { to { transform: rotate(360deg); } }
-        .s-title { font-size: 1.15em; font-weight: 600; color: #fff; }
+    <div class="player-card">
 
-        /* Estilos UI Bitmovin */
-        .bmpui-ui-watermark {
-            background-image: url("https://github.io") !important;
-            top: 0; left: 0; min-width: 5em;
-        }
-        .bmpui-ui-seekbar .bmpui-seekbar .bmpui-seekbar-playbackposition,
-        .bmpui-ui-volumeslider .bmpui-seekbar .bmpui-seekbar-playbackposition {
-            background-color: #e3d80b !important;
-        }
-        .bmpui-ui-selectbox, .bmpui-on { color: #e3d80b !important; }
-    </style>
+     
+        <div id="player-wrapper">
 
+            <div id="status">
+                <div class="spinner"></div>
+                <div class="s-title">Loading Stream...</div>
+            </div>
 
-    <div id="wrapper">
-        <div id="status">
-            <div class="spinner"></div>
-            <div class="s-title">Loading</div>
+            <div id="player"></div>
+
         </div>
-        <div id="player"></div>
+
     </div>
 
-    <script>
-        var url = "https://qp-pldt-live-bpk-ucd-prod.akamaized.net/bpk-tv/fifa_ppv1/default/index.mpd";
-        var ck_keyid = "2c338a117d434ce4bbe3569231af90f1";
-        var ck_key = "a9633d901ee8a3f4f58ac314b5c5f4fb";
+</div>
 
+<script>
 
-        function override(url) {
-            var wm = document.querySelector('button.bmpui-ui-watermark');
-            if (wm) wm.setAttribute('disabled', 'disabled');
+var url="https://qp-pldt-live-bpk-ucd-prod.akamaized.net/bpk-tv/fifa_ppv1/default/index.mpd";
 
-            if (url.indexOf('licensing.bitmovin.com/licensing') > -1)
-                return 'data:text/plain;charset=utf-8;base64,eyJzdGF0dXMiOiJncmFudGVkIiwibWVzc2FnZSI6IlRoZXJlIHlvdSBnby4ifQ==';
-            if (url.indexOf('licensing.bitmovin.com/impression') > -1)
-                return 'data:text/plain;charset=utf-8;base64,eyJzdGF0dXMiOiJncmFudGVkIiwibWVzc2FnZSI6IlRoZXJlIHlvdSBnby4ifQ==';
-            return url;
+var ck_keyid="2c338a117d434ce4bbe3569231af90f1";
+
+var ck_key="a9633d901ee8a3f4f58ac314b5c5f4fb";
+
+function override(url){
+
+    var wm=document.querySelector('button.bmpui-ui-watermark');
+
+    if(wm) wm.setAttribute('disabled','disabled');
+
+    if(url.indexOf('licensing.bitmovin.com/licensing')>-1)
+        return 'data:text/plain;charset=utf-8;base64,eyJzdGF0dXMiOiJncmFudGVkIiwibWVzc2FnZSI6IlRoZXJlIHlvdSBnby4ifQ==';
+
+    if(url.indexOf('licensing.bitmovin.com/impression')>-1)
+        return 'data:text/plain;charset=utf-8;base64,eyJzdGF0dXMiOiJncmFudGVkIiwibWVzc2FnZSI6IlRoZXJlIHlvdSBnby4ifQ==';
+
+    return url;
+}
+
+var _xhrOpen=XMLHttpRequest.prototype.open;
+
+XMLHttpRequest.prototype.open=function(){
+
+    arguments[1]=override(arguments[1]);
+
+    return _xhrOpen.apply(this,arguments);
+
+};
+
+document.addEventListener("DOMContentLoaded",function(){
+
+    var config={
+        key:"11d3698c-efdf-42f1-8769-54663995de2b",
+        playback:{
+            autoplay:true,
+            muted:false
         }
+    };
 
-        var _xhrOpen = XMLHttpRequest.prototype.open;
-        XMLHttpRequest.prototype.open = function () {
-            arguments[1] = override(arguments[1]);
-            return _xhrOpen.apply(this, arguments);
-        };
-
-        document.addEventListener('DOMContentLoaded', function () {
-            var config = {
-                key: '11d3698c-efdf-42f1-8769-54663995de2b',
-                playback: { autoplay: true, muted: false },
-                style: { width: '100%', height: '350px' }
-            };
-
-            var source = {
-                dash: url,
-                drm: {
-                    clearkey: [{ keyId: ck_keyid, key: ck_key }]
+    var source={
+        dash:url,
+        drm:{
+            clearkey:[
+                {
+                    keyId:ck_keyid,
+                    key:ck_key
                 }
-            };
+            ]
+        }
+    };
 
-            var player = new bitmovin.player.Player(document.getElementById('player'), config);
-            
-            player.load(source).then(function() {
-                document.getElementById('status').style.display = 'none';
-                console.log("Reproduciendo: TUDN");
-            }).catch(function (err) {
-                document.querySelector('.s-title').innerText = "Error al cargar el canal";
-                console.error('Bitmovin error:', err);
-            });
-        });
-    </script>
+    var player=new bitmovin.player.Player(
+        document.getElementById("player"),
+        config
+    );
+
+    player.load(source).then(function(){
+
+        document.getElementById("status").style.display="none";
+
+    }).catch(function(err){
+
+        document.querySelector(".s-title").innerHTML="Failed to load stream.";
+
+        console.log(err);
+
+    });
+
+});
+</script>
+
 </body>
 </html>
